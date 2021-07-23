@@ -1,0 +1,25 @@
+{
+  "name": "employee-tracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "employeeDb.js",
+  "scripts": {
+    "test": "npm run test",
+    "start": "node employeeDB.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rudys212/employee-tracker.git"
+  },
+  "author": "Rudys212",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rudys212/employee-tracker/issues"
+  },
+  "homepage": "https://github.com/Rudys212/employee-tracker#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "inquirer": "^8.1.2",
+    "mysql": "^2.18.1"
+  }
+}

@@ -1,5 +1,7 @@
 const mysql = require("mysql");
 const inquirer = require("inquirer");
+const cTable = require('console.table');
+require("dotenv").config();
 
 // create the connection information for the sql database
 const connection = mysql.createConnection({
@@ -10,23 +12,25 @@ const connection = mysql.createConnection({
 
   // Your username
   user: "root",
-
+  password: process.env.DB_PASSWORD,
   // Your password
-  password: "password",
-  database: "greatBay_DB",
+  database: "employeeDB",
 });
 
 // function which prompts the user for what action they should take
 const start = () => {
   inquirer
     .prompt({
-      name: "postOrBid",
+      name: "mainChoices",
       type: "list",
-      message: "Would you like to [POST] an auction or [BID] on an auction?",
-      choices: ["POST", "BID", "EXIT"],
+      message: "What would you like to do?",
+      choices: [
+        {
+          Add a department,
+        }
+      ],
     })
     .then((answer) => {
-      // based on their answer, either call the bid or the post functions
       if (answer.postOrBid === "POST") {
         postAuction();
       } else if (answer.postOrBid === "BID") {
