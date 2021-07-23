@@ -51,7 +51,7 @@ const start = () => {
         case "View Employees by Department":
           viewByDept();
           break;
-        case "View Employees by Role":
+        case "View Employees by Role":          
           viewByRole();
           break;
         case "Update Employee Role":
