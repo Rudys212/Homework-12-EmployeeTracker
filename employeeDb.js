@@ -1,6 +1,6 @@
 const mysql = require("mysql");
 const inquirer = require("inquirer");
-const cTable = require('console.table');
+const cTable = require("console.table");
 require("dotenv").config();
 
 // create the connection information for the sql database
@@ -25,69 +25,45 @@ const start = () => {
       type: "list",
       message: "What would you like to do?",
       choices: [
-        {
-          Add a department,
-        }
+        "Add a department",
+        "Add an Employee",
+        "Add an Employee Role",
+        "View All Employees",
+        "View Employees by Department",
+        "View Employees by Role",
+        "Update Employee Role",
       ],
     })
     .then((answer) => {
-      if (answer.postOrBid === "POST") {
-        postAuction();
-      } else if (answer.postOrBid === "BID") {
-        bidAuction();
-      } else {
-        connection.end();
+      switch (answer.mainChoices) {
+        case "Add a department":
+          addDept();
+          break;
+        case "Add an Employee":
+          addEmployee();
+          break;
+        case "Add an Employee Role":
+          addRole();
+          break;
+        case "View All Employees":
+          viewAll();
+          break;
+        case "View Employees by Department":
+          viewByDept();
+          break;
+        case "View Employees by Role":
+          viewByRole();
+          break;
+        case "Update Employee Role":
+          updateRole();
+          break;
       }
     });
 };
 
-// function to handle posting new items up for auction
-const postAuction = () => {
-  // prompt for info about the item being put up for auction
-  inquirer
-    .prompt([
-      {
-        name: "item",
-        type: "input",
-        message: "What is the item you would like to submit?",
-      },
-      {
-        name: "category",
-        type: "input",
-        message: "What category would you like to place your auction in?",
-      },
-      {
-        name: "startingBid",
-        type: "input",
-        message: "What would you like your starting bid to be?",
-        validate(value) {
-          if (isNaN(value) === false) {
-            return true;
-          }
-          return false;
-        },
-      },
-    ])
-    .then((answer) => {
-      // when finished prompting, insert a new item into the db with that info
-      connection.query(
-        "INSERT INTO items SET ?",
-        // QUESTION: What does the || 0 do?
-        {
-          item_name: answer.item,
-          category: answer.category,
-          starting_bid: answer.startingBid || 0,
-        },
-        (err) => {
-          if (err) throw err;
-          console.log("Your auction was created successfully!");
-          // re-prompt the user for if they want to bid or post
-          start();
-        }
-      );
-    });
-};
-
+function addEmployee(){
+  var 
+}
 const bidAuction = () => {
   // query the database for all items being auctioned
   connection.query("SELECT * FROM items", (err, results) => {
