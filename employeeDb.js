@@ -61,12 +61,52 @@ const start = () => {
     });
 };
 
-function addEmployee(){
-  var 
+function addDept(){
+  inquirer
+  .prompt([{
+type:"input",
+name:"department",
+message:"What is the name of the department you want to add?"
+  },]).then((res) => {
+    connection.query('INSERT INTO department (name) VALUES(?)', [res.department],function(err,data){
+      if (err) throw err;
+      console.table ('Department Entered');
+      start();
+    })
+  })
 }
+function addEmployee(){
+  inquirer
+  .prompt([{
+type:"input",
+name:"employeeFirst",
+message:"What is the first name of the employee"
+  },
+  {
+    type:"input",
+    name:"employeeLast",
+    message:"What is the last name of the employee"
+      },
+      {
+        type:"input",
+        name:"employeeRole",
+        message:"What is the employee's role ID?"
+          },
+          {
+            type:"input",
+            name:"employeeManager",
+            message:"What is the employee's manager's ID?"
+           }
+          ]).then((res) => {
+    connection.query('INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES(?,?,?,?)', [res.employeeFirst, employeeLast, employeeRole, employeeManager],function(err,data){
+      if (err) throw err;
+      console.table ('Employee Entered');
+      start();
+    })
+  })
 const bidAuction = () => {
   // query the database for all items being auctioned
-  connection.query("SELECT * FROM items", (err, results) => {
+  connection.query("SELECT * FROM items", (err, res) => {
     if (err) throw err;
     // once you have the items, prompt the user for which they'd like to bid on
     inquirer
