@@ -104,6 +104,30 @@ message:"What is the first name of the employee"
       start();
     })
   })
+  function addRole(){
+    inquirer
+    .prompt([{
+  type:"input",
+  name:"employeeTitle",
+  message:"What is the name of the employee's title?"
+    },
+    {
+      type:"input",
+      name:"employeeSalary",
+      message:"What is the salary for the employee at this position?"
+        },
+        {
+          type:"input",
+          name:"employeeDep",
+          message:"What is the employee's department ID?"
+            }
+            ]).then((res) => {
+      connection.query('INSERT INTO role (title, salary, department_id) VALUES(?,?,?)', [res.employeeTitle, employeeSalary, employeeDep],function(err,data){
+        if (err) throw err;
+        console.table ('Employee Entered');
+        start();
+      })
+    })
 const bidAuction = () => {
   // query the database for all items being auctioned
   connection.query("SELECT * FROM items", (err, res) => {
