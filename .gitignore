@@ -103,7 +103,7 @@ dist
 # TernJS port file
 .tern-port
 
-.DB_Store
+.DS_Store
 
 node_modules
 .env
