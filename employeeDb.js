@@ -197,7 +197,7 @@ function updateRole() {
         [res.updateRole, res.updateEmployee],
         function (err, data) {
           if (err) throw err;
-          console.table("Role updated for" + " res.first_name");
+          console.table("Role updated for" + " res.updateEmployee");
           start();
         }
       );
