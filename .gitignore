@@ -106,4 +106,4 @@ dist
 .DB_Store
 
 node_modules
-
+.env
