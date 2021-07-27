@@ -188,12 +188,12 @@ function updateRole() {
       {
         type: "input",
         name: "updateRole",
-        message: "What is the employee's updated role?",
+        message: "What is the employee's updated role id #?",
       },
     ])
     .then((res) => {
       connection.query(
-        "UPDATE role SET (title) WHERE (first_name) VALUES(?,?)",
+        "UPDATE employee SET role_id = ? WHERE first_name= ?",
         [res.updateRole, res.updateEmployee],
         function (err, data) {
           if (err) throw err;
